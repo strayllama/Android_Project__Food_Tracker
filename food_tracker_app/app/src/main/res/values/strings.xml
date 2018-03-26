@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">Food Tracker App</string>
+
+    // MENU BUTTONS
+    <string name="home_menu_botton">Home</string>
+    <string name="add_food_menu_button">Add Food Item</string>
+    <string name="list_all_menu_button">List All Items</string>
+    <string name="settings_menu_button">Settings</string>
+
+    // PAGE TITLES
+    <string name="welcome_title">WELCOME to the Fod tRacker App.</string>
+    <string name="add_food_title">ADD A Food ITEM</string>
+    <string name="list_all_title">All Food Items List</string>
+
+    // SETTINGS page
+    <string name="seed_button">Seed DB</string>
+    <string name="reset__button">Reset DB</string>
+
+    // ADD food page
+    <string name="large_food_radio">Large</string>
+    <string name="medium_food_radio">Medium</string>
+    <string name="small_food_radio">Small</string>
+    <string name="enter_calories">manual calories</string>
+    <string name="subit_food_button">Submit food item</string>
+    <string name="type_spinner_label">Type:</string>
+    <string name="size_title">Size:</string>
+    <string name="description_label">Description:</string>
+    <string name="date_label">Click date change it</string>
+
+    <string-array name="food_type">
+        <item>Meal</item>
+        <item>Snack</item>
+        <item>Water</item>
+    </string-array>
 </resources>
