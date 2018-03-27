@@ -3,11 +3,11 @@ package lab.codeclan.foodtrackerapp.Activities;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,7 +24,8 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
     private Date date = new Date(); // default is today's date.
     private Spinner spinner;
 
-    // Variable for Type String from type_spinner
+    RadioGroup sizeRadiogroup;
+
     TextView caloriesView;
     TextView fiveAdayView;
     TextView descriptionView;
@@ -45,8 +46,28 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
 
         this.spinner = (Spinner) findViewById(R.id.type_spinner);
         loadTypeSpinner();
+
+        sizeRadiogroup = (RadioGroup) findViewById(R.id.size);
+
+        sizeRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup size, int checkedId) {
+                // find which radio button is selected
+                if(checkedId == R.id.large_food_radio) {
+                    updateCalories(800);
+                } else if(checkedId == R.id.medium_food_radio) {
+                    updateCalories(400);
+                } else {
+                    updateCalories(200);
+                }
+            }
+        });
+
     }
 
+    public void updateCalories(Integer newValue) {
+        caloriesView.setText(newValue.toString());
+    }
 
     public void loadTypeSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.food_type, android.R.layout.simple_spinner_item); // Create an ArrayAdapter using the string(?!CharSeq?!) array and a default spinner layout ".simple_spinner_item"
@@ -66,14 +87,10 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
             dateFragment.show(getFragmentManager(), "datePicker");
     }
 
-    @Override   // When coming back from fragment - datePicker
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Date date = (Date) data.getSerializableExtra("DERP");
-        //Log.e("MainActivity", date.toGMTString());
-    }
 
-    // Embedded class for DatePickerFragment. Works with 'showDatePickerDialog', 'onActivityResult' and 'onDateSet' to get user input date.
+    // Embedded class for DatePickerFragment. Works with 'showDatePickerDialog' and 'onDateSet' to get user input date.
     public static class DatePickerFragment extends DialogFragment {
+
         public static DatePickerDialog.OnDateSetListener onDateSetListener;
 
         @Override
@@ -105,6 +122,12 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         //Log.e("MainActivity", "DATE: " + year + "/" + monthStr + "/" + dayStr );
     }
 
+//    @Override   // When coming back from fragment - datePicker - passes onDateSet
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Date date = (Date) data.getSerializableExtra("DERP");
+//        Log.e("MainActivity", date.toGMTString());
+//    }
+
     public void onClickSubmitButton(View view) {
         FoodItem aNewItem;
 
@@ -115,8 +138,8 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         int aFiveAday;
 
         //Log.e("MainActivity", "Date in format?: " + (dateView.getText().toString())); // aDate = new Date(dateView.getText().toString());
-        aDate = new Date("2018/03/26");
-        aType = "meal";
+        aDate = new Date(dateView.getText().toString());
+        aType = spinner.getSelectedItem().toString();
         aDescription = descriptionView.getText().toString();
         aCalories = 400; // aCalories = Integer.getInteger(caloriesView.getText().toString());
         aFiveAday = Integer.valueOf(fiveAdayView.getText().toString());
