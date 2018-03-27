@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="lab.codeclan.foodtrackerapp.Activities.ListAllActivity">
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="6dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="lab.codeclan.foodtrackerapp.Activities.AddConfirmationActivity"
+    tools:showIn="@layout/activity_add_confirmation">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,19 +1,21 @@
 package lab.codeclan.foodtrackerapp.Models;
 
-import java.sql.Date; // ?? or java.utl.Date;
-import java.util.LinkedList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FoodItem {
     private long id;
-    private Date date;
+    private String date;
     private String type;
     private String description;
     private int calories;
     private int fiveAday;
+    private static SimpleDateFormat dateSQLformat;
 
     // CONSTRUCTOR for initial creation to add to database
     public FoodItem(Date date, String type, String description, int calories, int fiveAday) {
-        this.date = date;
+        dateSQLformat = new SimpleDateFormat("yyyy/MM/dd");
+        this.date = dateSQLformat.format(date);
         this.type = type;
         this.description = description;
         this.calories = calories;
@@ -23,7 +25,8 @@ public class FoodItem {
     // CONSTRUCTOR for editing item in database, so with ID.
     public FoodItem(long id, Date date, String type, String description, int calories, int fiveAday) {
         this.id = id;
-        this.date = date;
+        dateSQLformat = new SimpleDateFormat("yyyy/MM/dd");
+        this.date = dateSQLformat.format(date);
         this.type = type;
         this.description = description;
         this.calories = calories;
@@ -41,7 +44,7 @@ public class FoodItem {
         return this.date.toString();
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -77,7 +80,12 @@ public class FoodItem {
         this.fiveAday = fiveAday;
     }
 
-
+    public String toString() {
+        String fullDescription = "This food is - Date: " + getDate() + ", Type: " + getType() +
+                ", Description: " + getDescription() + ", Calories: " + getCalories() +
+                ", FiveAday: " + getFiveAday() + ".";
+        return fullDescription;
+    }
     // Other Methods
 
 }

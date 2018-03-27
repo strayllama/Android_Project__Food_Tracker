@@ -16,9 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.AddFoodActivity" />
-        <activity android:name=".Activities.ListAllActivity" />
-        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity
+            android:name=".Activities.AddFoodActivity"
+            android:label="Add Food Item" />
+        <activity
+            android:name=".Activities.ListAllActivity"
+            android:label="List all Items" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="SETTINGS" />
     </application>
 
 </manifest>

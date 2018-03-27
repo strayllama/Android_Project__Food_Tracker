@@ -13,6 +13,8 @@ public class ListAllActivity extends BaseActivity {
         setContentView(R.layout.activity_list_all);
     }
 
+    // CREATE ADAPTOR TO LIST ALL ITEMS IN MY DATA BASE.... ALL DAYS? SORTED BY DATE!!
+
     //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //
