@@ -1,20 +1,20 @@
 package lab.codeclan.foodtrackerapp.Models;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class FoodItem {
+public class FoodItem implements Serializable {
     private long id;
     private String date;
     private String type;
     private String description;
-    private int calories;
-    private int fiveAday;
-    private static SimpleDateFormat dateSQLformat;
+    private Integer calories;
+    private Integer fiveAday;
+    public static SimpleDateFormat dateSQLformat = new SimpleDateFormat("yyyy/MM/dd");
 
     // CONSTRUCTOR for initial creation to add to database
-    public FoodItem(Date date, String type, String description, int calories, int fiveAday) {
-        dateSQLformat = new SimpleDateFormat("yyyy/MM/dd");
+    public FoodItem(Date date, String type, String description, Integer calories, Integer fiveAday) {
         this.date = dateSQLformat.format(date);
         this.type = type;
         this.description = description;
@@ -23,9 +23,8 @@ public class FoodItem {
     }
 
     // CONSTRUCTOR for editing item in database, so with ID.
-    public FoodItem(long id, Date date, String type, String description, int calories, int fiveAday) {
+    public FoodItem(long id, Date date, String type, String description, Integer calories, Integer fiveAday) {
         this.id = id;
-        dateSQLformat = new SimpleDateFormat("yyyy/MM/dd");
         this.date = dateSQLformat.format(date);
         this.type = type;
         this.description = description;
@@ -41,11 +40,11 @@ public class FoodItem {
     public void setId(Long ID) { this.id = id; }
 
     public String getDate() {
-        return this.date.toString();
+        return this.date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(Date date) {
+        this.date = dateSQLformat.format(date);
     }
 
     public String getType() {
@@ -64,19 +63,19 @@ public class FoodItem {
         this.description = description;
     }
 
-    public int getCalories() {
+    public Integer getCalories() {
         return this.calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(Integer calories) {
         this.calories = calories;
     }
 
-    public int getFiveAday() {
+    public Integer getFiveAday() {
         return this.fiveAday;
     }
 
-    public void setFiveAday(int fiveAday) {
+    public void setFiveAday(Integer fiveAday) {
         this.fiveAday = fiveAday;
     }
 

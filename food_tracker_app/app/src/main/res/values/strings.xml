@@ -4,11 +4,12 @@
     // MENU BUTTONS
     <string name="home_menu_botton">Home</string>
     <string name="add_food_menu_button">Add Food Item</string>
+    <string name="list_day_summaries_menu_button">List Daily Summaries</string>
     <string name="list_all_menu_button">List All Items</string>
     <string name="settings_menu_button">Settings</string>
 
     // PAGE TITLES
-    <string name="welcome_title">WELCOME to the Fod tRacker App.</string>
+    <string name="welcome_title">WELCOME to Food Tracker App.</string>
 
     // SETTINGS page
     <string name="seed_button">Seed DB</string>
@@ -42,6 +43,26 @@
         <item>Water</item>
         <item>Activity</item>
     </string-array>
+
     <string name="title_activity_add_confirmation">AddConfirmationActivity</string>
+
+
+    // Full list of items view
+    <string name="full_item_view_calLabel">Cal/ml</string>
+    <string name="full_item_list_fiveAday_label">#5aDay</string>
+
+    // Week Summary List
+    <string name="week_summary_list_label">Daily Averages for past weeks:</string>
+    <string name="week_summary_date_label">Week From:</string>
+    <string name="week_summary_average_cals">Avg Daily cals:</string>
+    <string name="week_summary_avg_water_label">Avg Water mls:</string>
+    <string name="week_summary_avg_5day_label">Avg # Fruit + Veg:</string>
+
+    // Day Summary List
+    <string name="day_summary_calories_label">Cal:</string>
+    <string name="day_summary_water_label">Water ml:</string>
+    <string name="day_summary_fiveAday_label"># Fruit + Veg</string>
+
+
 
 </resources>

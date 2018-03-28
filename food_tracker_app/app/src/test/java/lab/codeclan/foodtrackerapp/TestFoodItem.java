@@ -20,15 +20,13 @@ public class TestFoodItem {
     @Before
     public void before() {
         aDate = new Date("2018/03/26");
-        aType = "meal";
+        aType = "Meal";
         aDescription = "Veggies Pasta";
         aCalories = 100;
-        //aFiveAday = 1;
-        aFiveAday = Integer.valueOf("4");
+        aFiveAday = 1;
 
         aNewItem = new FoodItem(aDate, aType, aDescription, aCalories, aFiveAday);
 
-        //myDB.save(aNewItem);
     }
 
     @Test
@@ -38,7 +36,7 @@ public class TestFoodItem {
 
     @Test
     public void foodItemHasType() {
-        assertEquals("meal", aNewItem.getType());
+        assertEquals("Meal", aNewItem.getType());
     }
 
     @Test

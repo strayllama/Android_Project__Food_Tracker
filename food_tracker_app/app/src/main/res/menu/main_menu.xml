@@ -9,6 +9,9 @@
         android:id="@+id/add_food"
         android:title="@string/add_food_menu_button" />
     <item
+        android:id="@+id/list_day_summaries"
+        android:title="@string/list_day_summaries_menu_button" />
+    <item
         android:id="@+id/list_all"
         android:title="@string/list_all_menu_button" />
     <item

@@ -24,22 +24,25 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = null;
         if (item.getItemId() == R.id.home) {
-            Log.d("MainActivity", "Home Food Button Clicked. ");
             intent = new Intent(this, HomeActivity.class);
         }
+
         if (item.getItemId() == R.id.add_food) {
-            Log.d("MainActivity", "Add Food Button Clicked. ");
              intent = new Intent(this, AddFoodActivity.class);
         }
+
+        if (item.getItemId() == R.id.list_day_summaries) {
+            intent = new Intent(this, ListDaySummariesActivity.class);
+        }
+
         if (item.getItemId() == R.id.list_all) {
-            Log.d("MainActivity", "List All Button Clicked. ");
-             intent = new Intent(this, ListAllActivity.class);
+            intent = new Intent(this, ListAllActivity.class);
         }
 
         if (item.getItemId() == R.id.settings) {
-            Log.d("MainActivity", "Settings Button Clicked. ");
-             intent = new Intent(this, SettingsActivity.class);
+            intent = new Intent(this, SettingsActivity.class);
         }
+
 
         startActivity(intent);
         finish();
