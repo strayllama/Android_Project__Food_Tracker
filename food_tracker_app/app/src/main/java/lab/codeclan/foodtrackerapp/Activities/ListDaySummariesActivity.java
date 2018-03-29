@@ -1,6 +1,9 @@
 package lab.codeclan.foodtrackerapp.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,12 +23,24 @@ public class ListDaySummariesActivity extends BaseActivity {
 
         myDB = new FoodDBHelper(this);
 
-        ArrayList<DaySummaries> dayList = myDB.getAllDaySummaries();
+        ArrayList<DaySummaries> dayList = myDB.getDaySummariesDateRange("2000/01/01");
         System.out.println("I have a list of Day Summaries of length: " + dayList.size());
 
         DailySummariesListAdaptor dailySummariesListAdaptor = new DailySummariesListAdaptor(this, dayList);
 
         ListView listView = findViewById(R.id.daySummariesListView);
         listView.setAdapter(dailySummariesListAdaptor);
+    }
+
+    public void onListClickItem(View listItem) {
+        DaySummaries selectedDaySummary = (DaySummaries) listItem.getTag();
+
+        Log.d("MainActivity", "Selected Date: " + selectedDaySummary.getDate());
+
+
+        Intent intent = new Intent(this, DayActivity.class);
+        intent.putExtra("day", selectedDaySummary);
+
+        startActivity(intent);
     }
 }

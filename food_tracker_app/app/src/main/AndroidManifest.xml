@@ -25,8 +25,11 @@
         <activity
             android:name=".Activities.SettingsActivity"
             android:label="SETTINGS" />
-        <activity android:name=".Activities.ListDaySummariesActivity"
-            android:label="List daily Summaries"></activity>
+        <activity
+            android:name=".Activities.ListDaySummariesActivity"
+            android:label="List daily Summaries" />
+        <activity android:name=".Activities.DayActivity"
+            android:label="Days Items" ></activity>
     </application>
 
 </manifest>

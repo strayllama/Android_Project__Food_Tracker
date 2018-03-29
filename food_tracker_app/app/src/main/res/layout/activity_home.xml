@@ -14,8 +14,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/welcome_title"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,36 +25,120 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="onClickAddFood"
         android:text="@string/add_food_menu_button"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcome" />
-
-    <ListView
-        android:id="@+id/weekSummaryList"
-        android:layout_width="wrap_content"
-        android:layout_height="310dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="131dp" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/week_summary_list_label"
+        android:id="@+id/week_summary_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="28dp"
         android:text="@string/week_summary_list_label"
         android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeAddFoodButton" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+    <TextView
+        android:id="@+id/weekSummaryCalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/week_summary_average_cals"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/week_summary_title" />
+
+    <TextView
+        android:id="@+id/weekSummaryAvgCal"
+        android:layout_width="58dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/weekSummaryCalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/week_summary_title"
+        tools:text="2200" />
+
+    <TextView
+        android:id="@+id/weekSummaryWaterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/week_summary_avg_water_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekSummaryCalLabel" />
+
+    <TextView
+        android:id="@+id/weekSummaryAvgWater"
+        android:layout_width="58dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/weekSummaryWaterLabel"
+        app:layout_constraintTop_toBottomOf="@+id/weekSummaryCalLabel"
+        tools:text="1500" />
+
+    <TextView
+        android:id="@+id/weekSummaryVegLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/week_summary_avg_5day_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekSummaryWaterLabel" />
+
+    <TextView
+        android:id="@+id/weekSummaryAvgFruit"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/weekSummaryVegLabel"
+        app:layout_constraintTop_toBottomOf="@+id/weekSummaryWaterLabel"
+        tools:text="3" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/dailyAverageMonth"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weekSummaryVegLabel" />
 </android.support.constraint.ConstraintLayout>

@@ -16,12 +16,15 @@ import lab.codeclan.foodtrackerapp.Models.DaySummaryCals;
 import lab.codeclan.foodtrackerapp.Models.DaySummaryFiveAday;
 import lab.codeclan.foodtrackerapp.Models.DaySummaryWater;
 import lab.codeclan.foodtrackerapp.Models.FoodItem;
-
+import lab.codeclan.foodtrackerapp.Models.SummaryUtility;
 
 public class FoodDBHelper extends DBHelper {
     public FoodDBHelper(Context context) {
         super(context);
     }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     public void save(FoodItem foodItem) {
@@ -37,6 +40,9 @@ public class FoodDBHelper extends DBHelper {
         long newRowId = db.insert(FoodDBContract.TABLE_NAME, null, values);
 //        foodItem.setId(newRowId); // Not gonna use this just yet.
     }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public ArrayList<FoodItem> getAllItems() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -73,78 +79,77 @@ public class FoodDBHelper extends DBHelper {
             String itemType = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_TYPE));
             String itemDescription = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_DESCRIPTION));
             String itemCaloriesStr = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_CALORIES));
-            String itemFivaAdayStr = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_FIVEADAY));
+            String itemFiveAdayStr = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_FIVEADAY));
 
             Date itemDate = new Date(itemDateStr);
             Integer itemCalories = Integer.valueOf(itemCaloriesStr);
-            Integer itemFivaAday = Integer.valueOf(itemFivaAdayStr);
+            Integer itemFiveAday = Integer.valueOf(itemFiveAdayStr);
 
-            FoodItem aFoodItem = new FoodItem(itemId, itemDate, itemType, itemDescription, itemCalories, itemFivaAday);
+            FoodItem aFoodItem = new FoodItem(itemId, itemDate, itemType, itemDescription, itemCalories, itemFiveAday);
 
-            allItems.add(aFoodItem);      // etc.. use this items[] array to pass to adapter maybe?
-
-            // FOR ME:
-            System.out.println(aFoodItem);
+            allItems.add(aFoodItem);
         }
         cursor.close();
-
 
         return allItems;
     }
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public ArrayList<DaySummaries> getAllDaySummaries() {
+    public ArrayList<DaySummaries> getDaySummariesDateRange(String sinceDate) {
+        Date theDate = new Date();
+        String todaysDate = FoodItem.dateSQLformat.format(theDate);
         SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<DaySummaries> listDaySummaries = new ArrayList<>();
+        ArrayList<DaySummaries> listDaySummaries;
         ArrayList<DaySummaryCals> listDaySummaryCals = new ArrayList<>();
         ArrayList<DaySummaryWater> listDaySummaryWater = new ArrayList<>();
         ArrayList<DaySummaryFiveAday> listDaySummaryFiveAday = new ArrayList<>();
 
 // WATER MLS SECTION ************************************************
         String sqlWater = ("SELECT DATE, SUM(calories) from " + FoodDBContract.TABLE_NAME + " WHERE "
-                + FoodDBContract.COLUMN_NAME_TYPE + " = ? GROUP BY " + FoodDBContract.COLUMN_NAME_DATE);
-        String[] selectionArgsWater = {"Water"};
+                + FoodDBContract.COLUMN_NAME_TYPE + " = ? and " + FoodDBContract.COLUMN_NAME_DATE +
+                " BETWEEN ? AND ? GROUP BY " +
+                FoodDBContract.COLUMN_NAME_DATE);
+
+        String[] selectionArgsWater = {"Water", sinceDate, todaysDate};
         Cursor cursorWater = db.rawQuery (sqlWater, selectionArgsWater);
 
-        // To iterate through all the rows returned and get values from columns use:
         while(cursorWater.moveToNext()) {
             Date dayDate = new Date(cursorWater.getString(0));
             Integer dayWater = cursorWater.getInt(1);
-
             DaySummaryWater aDaySummaryWater = new DaySummaryWater(dayDate, dayWater);
-
             listDaySummaryWater.add(aDaySummaryWater);
-            // FOR ME:
-            System.out.println("*** Water Cursor: " + aDaySummaryWater);
         }
         cursorWater.close();
 
 //      CALORIES COLLECTION ************************************************
         String sqlCal = ("SELECT DATE, SUM(calories) from " + FoodDBContract.TABLE_NAME + " WHERE "
-                + FoodDBContract.COLUMN_NAME_TYPE + " = ? GROUP BY " + FoodDBContract.COLUMN_NAME_DATE);
-        String[] selectionArgsCal = {"Meal"};
+                + FoodDBContract.COLUMN_NAME_TYPE + " = ? or " + FoodDBContract.COLUMN_NAME_TYPE + " = ? or "
+                + FoodDBContract.COLUMN_NAME_TYPE + " = ? and " + FoodDBContract.COLUMN_NAME_DATE +
+                " BETWEEN ? AND ? GROUP BY " +
+                FoodDBContract.COLUMN_NAME_DATE);
+
+        String[] selectionArgsCal = {"Meal", "Snack", "Activity", sinceDate, todaysDate};
         Cursor cursorCalories = db.rawQuery (sqlCal, selectionArgsCal);
 
         while(cursorCalories.moveToNext()) {
             Date dayDate = new Date(cursorCalories.getString(0));
             Integer dayCalories = cursorCalories.getInt(1);
-
             DaySummaryCals aDaySummaryCals = new DaySummaryCals(dayDate, dayCalories);
-
             listDaySummaryCals.add(aDaySummaryCals);
-            // FOR ME:
-            System.out.println("*** Calories cursor: " + aDaySummaryCals);
         }
         cursorCalories.close();
 
 //      FIVEADAY COLLECTION ************************************************
         String sqlFive = ("SELECT DATE, SUM(fiveAday) from " + FoodDBContract.TABLE_NAME +
-                " GROUP BY " + FoodDBContract.COLUMN_NAME_DATE);
-        String[] selectionArgsFive = null;
+                " WHERE " + FoodDBContract.COLUMN_NAME_DATE +
+                " BETWEEN ? AND ? GROUP BY " +
+                FoodDBContract.COLUMN_NAME_DATE + " ORDER BY " + FoodDBContract.COLUMN_NAME_DATE + " DESC");
+
+        String[] selectionArgsFive = {sinceDate, todaysDate};
         Cursor cursorFiveAday = db.rawQuery (sqlFive, selectionArgsFive);
 
-        // To iterate through all the rows returned and get values from columns use:
         while(cursorFiveAday.moveToNext()) {
             Date dayDate = new Date(cursorFiveAday.getString(0));
             Integer dayFiveAday = cursorFiveAday.getInt(1);
@@ -152,40 +157,49 @@ public class FoodDBHelper extends DBHelper {
             DaySummaryFiveAday aDaySummaryFiveAday = new DaySummaryFiveAday(dayDate, dayFiveAday);
 
             listDaySummaryFiveAday.add(aDaySummaryFiveAday);
-            // FOR ME:
-            System.out.println("*** Five A day CURSOR:  " + aDaySummaryFiveAday);
-
         }
         cursorFiveAday.close();
 
 
-        // Loop through the list arrays from the queries, create day summary with 5aday then add water and cals if exist.
-        for (DaySummaryFiveAday dayF : listDaySummaryFiveAday) {
-            DaySummaries daySummary = new DaySummaries(dayF.getDate(), dayF.getDayFiveAday());
-            System.out.println("Adding a fiveAday summarY");
-            for (DaySummaryWater dayW : listDaySummaryWater) {
-                if (dayW.getDate().equals(dayF.getDate())) {
-                    daySummary.addDayWater(dayW.getDayWater());
-                    System.out.println("Adding a water summary");
-                }
-            }
-            for (DaySummaryCals dayC : listDaySummaryCals){
-                if (dayC.getDate().equals(dayF.getDate())) {
-                    daySummary.addDayCalories(dayC.getDayCalories());
-                    System.out.println("Adding a calorie summary");
-                }
-            }
-            listDaySummaries.add(daySummary);
-        }
-
-
+        listDaySummaries = SummaryUtility.combineFiveCalWaterArrays(listDaySummaryFiveAday,listDaySummaryCals, listDaySummaryWater);
         return listDaySummaries;
     }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    public ArrayList<FoodItem> getDateItems(String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<FoodItem> listDayItems = new ArrayList<>();
 
+        String sql = ("SELECT * from " + FoodDBContract.TABLE_NAME + " WHERE "
+                + FoodDBContract.COLUMN_NAME_DATE + " = ? ");
+        String[] selectionArgsCal = {date};
+        System.out.println("----> GET FOOD ON DATE: " + sql);
+        Cursor cursor = db.rawQuery (sql, selectionArgsCal);
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(0);
+            Date itemDate = new Date(cursor.getString(1));
+            String itemType = cursor.getString(2);
+            String itemDescription = cursor.getString(3);
+            Integer itemCalories = cursor.getInt(4);
+            Integer itemFiveAday = cursor.getInt(5);
+
+            FoodItem aFoodItem = new FoodItem(itemId, itemDate, itemType, itemDescription, itemCalories, itemFiveAday);
+
+            listDayItems.add(aFoodItem);
+            // FOR ME:
+            System.out.println("*** FOOD ITEM: " + aFoodItem);
+        }
+        cursor.close();
+
+
+        return listDayItems;
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //    public FoodItem getFood_onID(long id) {
@@ -245,7 +259,6 @@ public class FoodDBHelper extends DBHelper {
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
     // USE THIS? weekly Summaries... nope.

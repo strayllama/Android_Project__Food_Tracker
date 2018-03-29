@@ -1,8 +1,9 @@
 package lab.codeclan.foodtrackerapp.Models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class DaySummaries {
+public class DaySummaries implements Serializable{
     private Date date;
     private Integer dayCalories = 0;
     private Integer dayWater = 0;

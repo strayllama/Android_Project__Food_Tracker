@@ -22,17 +22,13 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        ArrayList<FoodItem> pastSevenDaysFood = new ArrayList<>();
+        ArrayList<FoodItem> pastThirtyDaysFood = new ArrayList<>();
         myDB = new FoodDBHelper(this);
 
-       // ArrayList<DaySummary> itemsArrayperWeek = myDB.getPastWeekItems(int week1);
+        //pastSevenDaysFood = myDB.getPastSevenDays();
+        //pastThirtyDaysFood = myDB.getPastThirtyDays();
 
-        // MAKE list food items in to daily averages per week!!!
-        //WeeklyItemsListAdaptor weeklyItemsListAdaptor = new WeeklyItemsListAdaptor(this, weeklyDaySummary);
-
-
-//        ListView listView = findViewById(R.id.weekSummaryList);
-//        listView.setAdapter(weeklyItemsListAdaptor);
     }
 
 

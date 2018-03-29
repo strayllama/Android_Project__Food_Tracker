@@ -9,30 +9,30 @@
     <string name="settings_menu_button">Settings</string>
 
     // PAGE TITLES
-    <string name="welcome_title">WELCOME to Food Tracker App.</string>
+    <string name="welcome_title">Welcome to \'Food Tracker App.\'</string>
 
     // SETTINGS page
     <string name="seed_button">Seed DB</string>
     <string name="reset__button">Reset DB</string>
 
     // ADD food page
-    <string name="type_spinner_label">Item Type:</string>
+    <string name="type_spinner_label">Pick Item Type:</string>
     <string name="spinner_tool_tip">Choose Type of Entry</string>
 
-    <string name="size_title">Size:</string>
+    <string name="size_title">Pick Size (cals/mls):</string>
     <string name="large_food_radio">Large</string>
     <string name="medium_food_radio">Medium</string>
     <string name="small_food_radio">Small</string>
 
-    <string name="enter_calories">manual calories</string>
+    <string name="enter_calories">Give cal/ml manually to overide:</string>
     <string name="default_calories">0</string>
 
-    <string name="description_label">Description:</string>
+    <string name="description_label">Give description:</string>
 
-    <string name="fiveAday_label"># of 5 a day:</string>
+    <string name="fiveAday_label"># Fruit/Veg portions?:</string>
     <string name="fiveAday_value">0</string>
 
-    <string name="date_label">(click on the date change it)</string>
+    <string name="date_label">(click date change it)</string>
 
     <string name="submit_food_button">Submit food item</string>
 
@@ -48,21 +48,24 @@
 
 
     // Full list of items view
-    <string name="full_item_view_calLabel">Cal/ml</string>
-    <string name="full_item_list_fiveAday_label">#5aDay</string>
+    <string name="full_item_view_calLabel">Cal/ml:</string>
+    <string name="full_item_list_fiveAday_label"># Fruit/Veg:</string>
 
     // Week Summary List
-    <string name="week_summary_list_label">Daily Averages for past weeks:</string>
+    <string name="week_summary_list_label">Daily Average for last 7 days:</string>
     <string name="week_summary_date_label">Week From:</string>
-    <string name="week_summary_average_cals">Avg Daily cals:</string>
-    <string name="week_summary_avg_water_label">Avg Water mls:</string>
+    <string name="week_summary_average_cals">Avg Daily cal:</string>
+    <string name="week_summary_avg_water_label">Avg Water ml:</string>
     <string name="week_summary_avg_5day_label">Avg # Fruit + Veg:</string>
 
     // Day Summary List
     <string name="day_summary_calories_label">Cal:</string>
-    <string name="day_summary_water_label">Water ml:</string>
-    <string name="day_summary_fiveAday_label"># Fruit + Veg</string>
-
+    <string name="day_summary_water_label">Water:</string>
+    <string name="day_summary_water_units">ml</string>
+    <string name="day_summary_fiveAday_label"># Fruit + Veg:</string>
+    <string name="daySummaryBackButton">Back</string>
+    <string name="dailyAverageMonth">Daily Average for last 30 days:</string>
+    <string name="DaySummaryTitle">Items for:</string>
 
 
 </resources>
