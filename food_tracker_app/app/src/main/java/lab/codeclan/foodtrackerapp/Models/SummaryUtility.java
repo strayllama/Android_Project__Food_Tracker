@@ -27,4 +27,24 @@ public class SummaryUtility {
         return listDaySummaries;
     }
 
+    public static ArrayList<Integer> sumAndAverageCalWaterFruit(ArrayList<DaySummaries> daySummaries) {
+        ArrayList<Integer> summedCalWaterFruit = new ArrayList<>();
+        Integer cal = 0;
+        Integer water = 0;
+        Integer fruit = 0;
+
+        for (DaySummaries day : daySummaries) {
+            cal += day.getDayCalories();
+            water += day.getDayWater();
+            fruit += day.getDayFiveAday();
+        }
+
+        summedCalWaterFruit.add((cal / daySummaries.size()));
+        summedCalWaterFruit.add((water / daySummaries.size()));
+        summedCalWaterFruit.add((fruit / daySummaries.size()));
+
+        return summedCalWaterFruit;
+    }
+
+
 }

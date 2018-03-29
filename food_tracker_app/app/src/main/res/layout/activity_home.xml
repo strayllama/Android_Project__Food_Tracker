@@ -105,8 +105,8 @@
         android:id="@+id/weekSummaryVegLabel"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/week_summary_avg_5day_label"
         android:textAlignment="textEnd"
         android:textColor="@android:color/black"
@@ -141,4 +141,82 @@
         app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weekSummaryVegLabel" />
+
+    <TextView
+        android:id="@+id/monthSummaryCalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/week_summary_average_cals"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/monthSummaryWaterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/week_summary_avg_water_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthSummaryCalLabel" />
+
+    <TextView
+        android:id="@+id/monthSummaryFruitLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/week_summary_avg_5day_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/monthSummaryWaterLabel" />
+
+    <TextView
+        android:id="@+id/monthSummaryAvgCal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/monthSummaryCalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:text="2200" />
+
+    <TextView
+        android:id="@+id/monthSummaryAvgWater"
+        android:layout_width="51dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/monthSummaryWaterLabel"
+        app:layout_constraintTop_toBottomOf="@+id/monthSummaryCalLabel"
+        tools:text="1500" />
+
+    <TextView
+        android:id="@+id/monthSummaryAvgFruit"
+        android:layout_width="17dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/monthSummaryFruitLabel"
+        app:layout_constraintTop_toBottomOf="@+id/monthSummaryWaterLabel"
+        tools:text="5" />
 </android.support.constraint.ConstraintLayout>
