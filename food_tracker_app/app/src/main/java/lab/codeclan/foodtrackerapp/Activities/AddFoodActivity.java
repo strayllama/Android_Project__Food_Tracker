@@ -205,9 +205,18 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
 
 
         aNewItem = new FoodItem(aDate, aType, aDescription, aCalories, aFiveAday);
-        myDB.save(aNewItem);
-        Toast.makeText(this, "Item Submitted!", Toast.LENGTH_SHORT).show();
-        resetAddPage();
+
+        Calendar todayCal = Calendar.getInstance();
+        Calendar enteredCal = Calendar.getInstance();
+        enteredCal.setTime(aDate);
+        if (todayCal.after(enteredCal)) {
+            myDB.save(aNewItem);
+            Toast.makeText(this, "Item Submitted!", Toast.LENGTH_SHORT).show();
+            resetAddPage();
+        } else {
+            Toast.makeText(this, "That date is in the future!! try again", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void resetAddPage() {
