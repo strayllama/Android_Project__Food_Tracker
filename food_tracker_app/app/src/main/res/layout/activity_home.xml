@@ -42,12 +42,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="92dp"
         android:text="@string/week_summary_list_label"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
@@ -133,12 +133,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:text="@string/dailyAverageMonth"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weekSummaryVegLabel" />
 
@@ -219,4 +219,91 @@
         app:layout_constraintStart_toEndOf="@+id/monthSummaryFruitLabel"
         app:layout_constraintTop_toBottomOf="@+id/monthSummaryWaterLabel"
         tools:text="5" />
+
+    <TextView
+        android:id="@+id/daySummaryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/TodaySummaryTitle"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+    <TextView
+        android:id="@+id/dayProgressCal"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/dayprogressCalLabel"
+        app:layout_constraintTop_toBottomOf="@+id/daySummaryTitle"
+        tools:text="1200" />
+
+    <TextView
+        android:id="@+id/dayProgressWaterLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/day_summary_water_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/dayProgressCal"
+        app:layout_constraintTop_toBottomOf="@+id/daySummaryTitle" />
+
+    <TextView
+        android:id="@+id/dayprogressCalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/day_summary_calories_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daySummaryTitle" />
+
+    <TextView
+        android:id="@+id/dayProgressWater"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/dayProgressWaterLabel"
+        app:layout_constraintTop_toBottomOf="@+id/daySummaryTitle"
+        tools:text="1100" />
+
+    <TextView
+        android:id="@+id/dayProgressFruitLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/day_summary_fiveAday_label"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/daySummaryTitle"
+        app:layout_constraintTop_toBottomOf="@+id/welcome" />
+
+    <TextView
+        android:id="@+id/dayProgressFruit"
+        android:layout_width="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="22sp"
+        app:layout_constraintStart_toEndOf="@+id/dayProgressFruitLabel"
+        app:layout_constraintTop_toBottomOf="@+id/welcome"
+        tools:text="3" />
 </android.support.constraint.ConstraintLayout>

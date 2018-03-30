@@ -9,9 +9,7 @@ public class DaySummaries implements Serializable{
     private Integer dayWater = 0;
     private Integer dayFiveAday = 0;
 
-    public DaySummaries(Date date){
-        this.date = date;
-    }
+//    public DaySummaries(Date date){this.date = date;}
 
     public DaySummaries(Date date, Integer dayFiveAday){
         this.date = date;

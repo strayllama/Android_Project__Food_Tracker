@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -29,6 +29,7 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
     String radioChoice;
     String spinnerTypeChoice;
     TextView caloriesView;
+    TextView caloriesManualView;
     TextView fiveAdayView;
     TextView descriptionView;
     TextView dateView;
@@ -43,13 +44,12 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         caloriesView = findViewById(R.id.calories_textView);
         fiveAdayView = findViewById(R.id.fiveAday_textView);
         descriptionView = findViewById(R.id.description_textView);
+        caloriesManualView = findViewById(R.id.caloriesManualEdit);
         dateView = findViewById(R.id.date_textView);
         dateView.setText(FoodItem.dateSQLformat.format(date)); // convert todays date to yyyy/mm/dd and set to selection
 
         this.spinner = (Spinner) findViewById(R.id.type_spinner);
         loadTypeSpinner();
-     //   spinnerTypeChoice = spinner.getSelectedItem().toString();  // needed??
-
 
         sizeRadiogroup = (RadioGroup) findViewById(R.id.size);
         radioChoice = "medium"; // get the id incase default changes? --> sizeRadiogroup.getCheckedRadioButtonId();
@@ -59,13 +59,15 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
             public void onCheckedChanged(RadioGroup size, int checkedId) {
                 if(checkedId == R.id.large_food_radio) {
                   radioChoice = "large";
+                  caloriesManualView.setText("");
                 } else if(checkedId == R.id.medium_food_radio) {
                     radioChoice = "medium";
+                    caloriesManualView.setText("");
                 } else {
                     radioChoice = "small";
+                    caloriesManualView.setText("");
                 }
                 updateCalories();
-                //Log.d("MainActivity", "clicked radio button: " + radioChoice);
             }
         });
 
@@ -74,7 +76,6 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
 
     public void updateCalories() {
         String newValue;
-        Log.d("MainActivity", "Calories updating, radio button: " + radioChoice + ", Spinner type: " + spinnerTypeChoice);
 
         if (radioChoice.equals("large")) {
             if (spinnerTypeChoice.equals("Meal")) {
@@ -120,6 +121,15 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 spinnerTypeChoice = spinner.getSelectedItem().toString();
                 updateCalories();
+                if (spinnerTypeChoice.equals("Activity") || spinnerTypeChoice.equals("Water")) {
+                    fiveAdayView.setEnabled(false);
+                    fiveAdayView.setText("");
+                    caloriesManualView.setText("");
+                } else {
+                    fiveAdayView.setEnabled(true);
+                    fiveAdayView.setText("");
+                    caloriesManualView.setText("");
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
@@ -163,7 +173,6 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         if (day < 10) {
             dayStr = "0" + day;
         } else { dayStr = String.valueOf(day);}
-        //Log.e("MainActivity", "DATE: " + year + "/" + monthStr + "/" + dayStr );
         dateView.setText(year + "/" + monthStr + "/" + dayStr);
     }
 
@@ -181,15 +190,31 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         int aCalories;
         int aFiveAday;
 
-        //Log.e("MainActivity", "Date in format?: " + (dateView.getText().toString())); // aDate = new Date(dateView.getText().toString());
         aDate = new Date(dateView.getText().toString());
         aType = spinnerTypeChoice;
         aDescription = descriptionView.getText().toString();
-        aCalories = Integer.valueOf(caloriesView.getText().toString());
-        aFiveAday = Integer.valueOf(fiveAdayView.getText().toString());
+
+        if (caloriesManualView.getText().length() == 0) {
+            aCalories = Integer.valueOf(caloriesView.getText().toString());
+        } else { aCalories = Integer.valueOf(caloriesManualView.getText().toString()); }
+
+
+        if (fiveAdayView.getText().length() == 0) {
+            aFiveAday = 0;
+        } else { aFiveAday = Integer.valueOf(fiveAdayView.getText().toString()); }
+
 
         aNewItem = new FoodItem(aDate, aType, aDescription, aCalories, aFiveAday);
         myDB.save(aNewItem);
+        Toast.makeText(this, "Item Submitted!", Toast.LENGTH_SHORT).show();
+        resetAddPage();
+    }
+
+    public void resetAddPage() {
+        fiveAdayView.setText("");
+        descriptionView.setText("");
+        caloriesManualView.setText("");
+//      dateView.setText(FoodItem.dateSQLformat.format(date));
     }
 
 } // end of AddFoodActivity

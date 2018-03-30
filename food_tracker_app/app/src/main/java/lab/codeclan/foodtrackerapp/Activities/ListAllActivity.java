@@ -26,6 +26,4 @@ public class ListAllActivity extends BaseActivity {
         ListView listView = findViewById(R.id.allFoodItemsList);
         listView.setAdapter(allFoodItemsAdaptor);
     }
-
-
 }

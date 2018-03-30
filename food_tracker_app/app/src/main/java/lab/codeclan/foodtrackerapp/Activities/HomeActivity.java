@@ -26,6 +26,9 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        TextView dayCalView;
+        TextView dayWaterView;
+        TextView dayFruitView;
         TextView weekCalView;
         TextView weekWaterView;
         TextView weekFruitView;
@@ -33,6 +36,9 @@ public class HomeActivity extends BaseActivity {
         TextView monthWaterView;
         TextView monthFruitView;
 
+        dayCalView = findViewById(R.id.dayProgressCal);
+        dayWaterView = findViewById(R.id.dayProgressWater);
+        dayFruitView = findViewById(R.id.dayProgressFruit);
         weekCalView = findViewById(R.id.weekSummaryAvgCal);
         weekWaterView = findViewById(R.id.weekSummaryAvgWater);
         weekFruitView = findViewById(R.id.weekSummaryAvgFruit);
@@ -40,9 +46,11 @@ public class HomeActivity extends BaseActivity {
         monthWaterView = findViewById(R.id.monthSummaryAvgWater);
         monthFruitView = findViewById(R.id.monthSummaryAvgFruit);
 
+        ArrayList<Integer> dayCalWaterFruit;
         ArrayList<Integer> weekCalWaterFruit;
         ArrayList<Integer> monthCalWaterFruit;
 
+        Date today = new Date ();
         Calendar cal30 = Calendar.getInstance();
         cal30.add(Calendar.DATE, -29);
         Date thirtyDaysAgo = cal30.getTime();
@@ -55,13 +63,19 @@ public class HomeActivity extends BaseActivity {
 
         myDB = new FoodDBHelper(this);
 
+        ArrayList<DaySummaries> dayDayList = myDB.getDaySummariesDateRange(FoodItem.dateSQLformat.format(today));
         ArrayList<DaySummaries> weekDayList = myDB.getDaySummariesDateRange(oneWeekAgoStr);
         ArrayList<DaySummaries> monthDayList = myDB.getDaySummariesDateRange(thirtyDaysAgoStr);
         System.out.println("I have a week list of Day Summaries of length: " + weekDayList.size());
         System.out.println("I have a month list of Day Summaries of length: " + monthDayList.size());
 
+        dayCalWaterFruit = SummaryUtility.sumAndAverageCalWaterFruit(dayDayList);
         weekCalWaterFruit = SummaryUtility.sumAndAverageCalWaterFruit(weekDayList);
         monthCalWaterFruit = SummaryUtility.sumAndAverageCalWaterFruit(monthDayList);
+
+        dayCalView.setText(dayCalWaterFruit.get(0).toString());
+        dayWaterView.setText(dayCalWaterFruit.get(1).toString());
+        dayFruitView.setText(dayCalWaterFruit.get(2).toString());
 
         weekCalView.setText(weekCalWaterFruit.get(0).toString());
         weekWaterView.setText(weekCalWaterFruit.get(1).toString());
@@ -70,9 +84,8 @@ public class HomeActivity extends BaseActivity {
         monthCalView.setText(monthCalWaterFruit.get(0).toString());
         monthWaterView.setText(monthCalWaterFruit.get(1).toString());
         monthFruitView.setText(monthCalWaterFruit.get(2).toString());
-
-
     }
+
 
 
 // ADD FOOD BUTTON

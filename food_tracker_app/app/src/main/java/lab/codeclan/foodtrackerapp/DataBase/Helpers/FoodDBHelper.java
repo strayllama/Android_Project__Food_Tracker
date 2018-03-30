@@ -73,7 +73,7 @@ public class FoodDBHelper extends DBHelper {
         );
 
         // To iterate through all the rows returned and get values from columns use:
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(BaseColumns._ID));
             String itemDateStr = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_DATE));
             String itemType = cursor.getString(cursor.getColumnIndexOrThrow(FoodDBContract.COLUMN_NAME_TYPE));
@@ -111,11 +111,10 @@ public class FoodDBHelper extends DBHelper {
                 + FoodDBContract.COLUMN_NAME_TYPE + " = ? and " + FoodDBContract.COLUMN_NAME_DATE +
                 " BETWEEN ? AND ? GROUP BY " +
                 FoodDBContract.COLUMN_NAME_DATE);
-
         String[] selectionArgsWater = {"Water", sinceDate, todaysDate};
-        Cursor cursorWater = db.rawQuery (sqlWater, selectionArgsWater);
 
-        while(cursorWater.moveToNext()) {
+        Cursor cursorWater = db.rawQuery(sqlWater, selectionArgsWater);
+        while (cursorWater.moveToNext()) {
             Date dayDate = new Date(cursorWater.getString(0));
             Integer dayWater = cursorWater.getInt(1);
             DaySummaryWater aDaySummaryWater = new DaySummaryWater(dayDate, dayWater);
@@ -129,11 +128,10 @@ public class FoodDBHelper extends DBHelper {
                 + FoodDBContract.COLUMN_NAME_TYPE + " = ? and " + FoodDBContract.COLUMN_NAME_DATE +
                 " BETWEEN ? AND ? GROUP BY " +
                 FoodDBContract.COLUMN_NAME_DATE);
-
         String[] selectionArgsCal = {"Meal", "Snack", "Activity", sinceDate, todaysDate};
-        Cursor cursorCalories = db.rawQuery (sqlCal, selectionArgsCal);
 
-        while(cursorCalories.moveToNext()) {
+        Cursor cursorCalories = db.rawQuery(sqlCal, selectionArgsCal);
+        while (cursorCalories.moveToNext()) {
             Date dayDate = new Date(cursorCalories.getString(0));
             Integer dayCalories = cursorCalories.getInt(1);
             DaySummaryCals aDaySummaryCals = new DaySummaryCals(dayDate, dayCalories);
@@ -146,22 +144,18 @@ public class FoodDBHelper extends DBHelper {
                 " WHERE " + FoodDBContract.COLUMN_NAME_DATE +
                 " BETWEEN ? AND ? GROUP BY " +
                 FoodDBContract.COLUMN_NAME_DATE + " ORDER BY " + FoodDBContract.COLUMN_NAME_DATE + " DESC");
-
         String[] selectionArgsFive = {sinceDate, todaysDate};
-        Cursor cursorFiveAday = db.rawQuery (sqlFive, selectionArgsFive);
 
-        while(cursorFiveAday.moveToNext()) {
+        Cursor cursorFiveAday = db.rawQuery(sqlFive, selectionArgsFive);
+        while (cursorFiveAday.moveToNext()) {
             Date dayDate = new Date(cursorFiveAday.getString(0));
             Integer dayFiveAday = cursorFiveAday.getInt(1);
-
             DaySummaryFiveAday aDaySummaryFiveAday = new DaySummaryFiveAday(dayDate, dayFiveAday);
-
             listDaySummaryFiveAday.add(aDaySummaryFiveAday);
         }
         cursorFiveAday.close();
 
-
-        listDaySummaries = SummaryUtility.combineFiveCalWaterArrays(listDaySummaryFiveAday,listDaySummaryCals, listDaySummaryWater);
+        listDaySummaries = SummaryUtility.combineFiveCalWaterArrays(listDaySummaryFiveAday, listDaySummaryCals, listDaySummaryWater);
         return listDaySummaries;
     }
 
@@ -176,9 +170,8 @@ public class FoodDBHelper extends DBHelper {
         String sql = ("SELECT * from " + FoodDBContract.TABLE_NAME + " WHERE "
                 + FoodDBContract.COLUMN_NAME_DATE + " = ? ");
         String[] selectionArgsCal = {date};
-        System.out.println("----> GET FOOD ON DATE: " + sql);
-        Cursor cursor = db.rawQuery (sql, selectionArgsCal);
-        while(cursor.moveToNext()) {
+        Cursor cursor = db.rawQuery(sql, selectionArgsCal);
+        while (cursor.moveToNext()) {
             long itemId = cursor.getLong(0);
             Date itemDate = new Date(cursor.getString(1));
             String itemType = cursor.getString(2);
@@ -189,8 +182,6 @@ public class FoodDBHelper extends DBHelper {
             FoodItem aFoodItem = new FoodItem(itemId, itemDate, itemType, itemDescription, itemCalories, itemFiveAday);
 
             listDayItems.add(aFoodItem);
-            // FOR ME:
-            System.out.println("*** FOOD ITEM: " + aFoodItem);
         }
         cursor.close();
 
@@ -256,17 +247,5 @@ public class FoodDBHelper extends DBHelper {
 //        cursor.close();
 //        return extractedItem;
 //    } // end getFood_onID
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    // USE THIS? weekly Summaries... nope.
-//    public ArrayList<FoodItem> getfoodItemsBetweenNowAnd(Date fromDate) {
-//        ArrayList<FoodItem> bunchOfFoodItems = new ArrayList<>();
-//
-////            SELECT * food_items WHERE extract (week FROM date) = weekNumber
-//        return bunchOfFoodItems;
-//    }
 
 }

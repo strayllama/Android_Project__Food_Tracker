@@ -70,7 +70,6 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/fiveAday_value"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/fiveAday_label"
@@ -104,15 +103,14 @@
         tools:text="512" />
 
     <EditText
-        android:id="@+id/calories_editText"
-        android:layout_width="51dp"
+        android:id="@+id/caloriesManualEdit"
+        android:layout_width="69dp"
         android:layout_height="42dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/size_label"
         tools:text="200" />
@@ -200,9 +198,8 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="129dp"
+        android:layout_width="147dp"
         android:layout_height="45dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:text="@string/enter_calories"
         app:layout_constraintStart_toEndOf="@+id/size"

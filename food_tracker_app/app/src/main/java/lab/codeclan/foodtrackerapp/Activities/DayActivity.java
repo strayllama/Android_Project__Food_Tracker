@@ -34,7 +34,7 @@ public class DayActivity extends AppCompatActivity {
         count = findViewById(R.id.daySummaryCount);
         Intent intent = getIntent();
         DaySummaries selectedDaySummary = (DaySummaries) intent.getSerializableExtra("day");
-        Log.d("Day", selectedDaySummary.getDate());
+        //Log.d("Day", selectedDaySummary.getDate());
         String date = selectedDaySummary.getDate();
         myDB = new FoodDBHelper(this);
         theDate.setText(date); // convert todays date to yyyy/mm/dd and set to selection
@@ -50,8 +50,8 @@ public class DayActivity extends AppCompatActivity {
     }
 
     public boolean onClickBackButton(View view) {
-            finish();
-            return true;
+        finish();
+        return true;
     }
 
 }

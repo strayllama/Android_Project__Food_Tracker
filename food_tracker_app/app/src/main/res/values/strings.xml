@@ -12,8 +12,7 @@
     <string name="welcome_title">Welcome to \'Food Tracker App.\'</string>
 
     // SETTINGS page
-    <string name="seed_button">Seed DB</string>
-    <string name="reset__button">Reset DB</string>
+    <string name="set_target_button">Set Daily Targets</string>
 
     // ADD food page
     <string name="type_spinner_label">Pick Item Type:</string>
@@ -24,7 +23,7 @@
     <string name="medium_food_radio">Medium</string>
     <string name="small_food_radio">Small</string>
 
-    <string name="enter_calories">Give cal/ml manually to overide:</string>
+    <string name="enter_calories">Type cal/ml manually to OVERRIDE presets:</string>
     <string name="default_calories">0</string>
 
     <string name="description_label">Give description:</string>
@@ -34,7 +33,7 @@
 
     <string name="date_label">(click date change it)</string>
 
-    <string name="submit_food_button">Submit food item</string>
+    <string name="submit_food_button">Submit item</string>
 
 
     <string-array name="food_type">
@@ -66,6 +65,7 @@
     <string name="daySummaryBackButton">Back</string>
     <string name="dailyAverageMonth">Daily Average for last 30 days:</string>
     <string name="DaySummaryTitle">Items for:</string>
+    <string name="TodaySummaryTitle">Todays Progress:</string>
 
 
 </resources>
