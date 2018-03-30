@@ -26,28 +26,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.home) {
             intent = new Intent(this, HomeActivity.class);
         }
-
         if (item.getItemId() == R.id.add_food) {
              intent = new Intent(this, AddFoodActivity.class);
         }
-
         if (item.getItemId() == R.id.list_day_summaries) {
             intent = new Intent(this, ListDaySummariesActivity.class);
         }
-
         if (item.getItemId() == R.id.list_all) {
             intent = new Intent(this, ListAllActivity.class);
         }
-
         if (item.getItemId() == R.id.settings) {
             intent = new Intent(this, SettingsActivity.class);
         }
 
-
         startActivity(intent);
         finish();
-
         return true;
     }
-
-}
+} // end BaseActivity

@@ -76,40 +76,25 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
 
     public void updateCalories() {
         String newValue;
-
         if (radioChoice.equals("large")) {
-            if (spinnerTypeChoice.equals("Meal")) {
-                newValue = "800";
-            } else if (spinnerTypeChoice.equals("Snack")) {
-                newValue = "375";
-            } else if (spinnerTypeChoice.equals("Activity")) {
-                newValue = "-1000";
-            } else {
-                newValue = "500";
-            }
+            if (spinnerTypeChoice.equals("Meal")) { newValue = "800"; }
+            else if (spinnerTypeChoice.equals("Snack")) { newValue = "375"; }
+            else if (spinnerTypeChoice.equals("Activity")) { newValue = "-1000"; }
+            else { newValue = "500"; }
         } else if (radioChoice.equals("medium")) {
-            if (spinnerTypeChoice.equals("Meal")) {
-                newValue = "575";
-            } else if (spinnerTypeChoice.equals("Snack")) {
-                newValue = "250";
-            } else if (spinnerTypeChoice.equals("Activity")) {
-                newValue = "-500";
-            } else {
-                newValue = "250";
-            }
+            if (spinnerTypeChoice.equals("Meal")) { newValue = "575"; }
+            else if (spinnerTypeChoice.equals("Snack")) { newValue = "250"; }
+            else if (spinnerTypeChoice.equals("Activity")) { newValue = "-500"; }
+            else { newValue = "250"; }
         } else {
-            if (spinnerTypeChoice.equals("Meal")) {
-                newValue = "350";
-            } else if (spinnerTypeChoice.equals("Snack")) {
-                newValue = "100";
-            } else if (spinnerTypeChoice.equals("Activity")) {
-                newValue = "-250";
-            } else {
-                newValue = "100";
-            }
+            if (spinnerTypeChoice.equals("Meal")) { newValue = "350"; }
+            else if (spinnerTypeChoice.equals("Snack")) { newValue = "100"; }
+            else if (spinnerTypeChoice.equals("Activity")) { newValue = "-250"; }
+            else { newValue = "100"; }
         }
         caloriesView.setText(newValue);
     }
+
 
     public void loadTypeSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.food_type, android.R.layout.simple_spinner_item); // Create an ArrayAdapter using the string(?!CharSeq?!) array and a default spinner layout ".simple_spinner_item"
@@ -223,7 +208,7 @@ public class AddFoodActivity extends BaseActivity implements DatePickerDialog.On
         fiveAdayView.setText("");
         descriptionView.setText("");
         caloriesManualView.setText("");
-//      dateView.setText(FoodItem.dateSQLformat.format(date));
+//      dateView.setText(FoodItem.dateSQLformat.format(date));   // quite like not setting this back to today.
     }
 
 } // end of AddFoodActivity

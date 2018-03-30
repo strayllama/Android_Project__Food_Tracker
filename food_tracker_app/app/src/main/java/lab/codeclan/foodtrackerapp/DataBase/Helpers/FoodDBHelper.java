@@ -192,7 +192,7 @@ public class FoodDBHelper extends DBHelper {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//      // TO USE When I add full crud :-)
 //    public FoodItem getFood_onID(long id) {
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        FoodItem extractedItem = null;
@@ -248,4 +248,4 @@ public class FoodDBHelper extends DBHelper {
 //        return extractedItem;
 //    } // end getFood_onID
 
-}
+} // end FOODDBHELPER

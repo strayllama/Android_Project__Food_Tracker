@@ -8,7 +8,7 @@ public class SummaryUtility {
     public static ArrayList<DaySummaries> combineFiveCalWaterArrays(ArrayList<DaySummaryFiveAday> listDaySummaryFiveAday, ArrayList<DaySummaryCals> listDaySummaryCals, ArrayList<DaySummaryWater> listDaySummaryWater) {
         ArrayList<DaySummaries> listDaySummaries = new ArrayList<>();
 
-        // Loop through the list arrays from the queries, create day summary with 5aday then add water and cals if exist.
+        // Loop through the list arrays from the queries, create day summary with 5 aday values then add water and cals if exist on those days.
         for (DaySummaryFiveAday dayF : listDaySummaryFiveAday) {
             DaySummaries daySummary = new DaySummaries(dayF.getDate(), dayF.getDayFiveAday());
             for (DaySummaryWater dayW : listDaySummaryWater) {
@@ -22,11 +22,11 @@ public class SummaryUtility {
                 }
             }
             listDaySummaries.add(daySummary);
-
         }
         return listDaySummaries;
     }
 
+    // Used to make the average over a number of days.
     public static ArrayList<Integer> sumAndAverageCalWaterFruit(ArrayList<DaySummaries> daySummaries) {
         ArrayList<Integer> summedCalWaterFruit = new ArrayList<>();
         Integer cal = 0;
@@ -45,6 +45,4 @@ public class SummaryUtility {
 
         return summedCalWaterFruit;
     }
-
-
-}
+} // end SummaryUtility
